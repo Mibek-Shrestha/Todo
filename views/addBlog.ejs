@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form with Navbar and Footer</title>
+    <style>
+      /* Internal CSS for styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 15px 0;
+        text-align: center;
+      }
+
+      nav {
+        background-color: #444;
+        padding: 10px 0;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-right: 10px;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+      }
+
+      form {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      form input[type="text"],
+      form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+
+      form input[type="file"] {
+        margin-bottom: 10px;
+      }
+
+      form input[type="file"]::-webkit-file-upload-button {
+        background: #333;
+        color: #fff;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      form input[type="file"]::-webkit-file-upload-button:hover {
+        background: #555;
+      }
+
+      form input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <form>
+        <h2>Form Title</h2>
+        <label for="title">Title:</label><br />
+        <input type="text" id="title" name="title" /><br />
+
+        <label for="image">Image:</label><br />
+        <input type="file" id="image" name="image" /><br />
+
+        <label for="subtitle">Subtitle:</label><br />
+        <input type="text" id="subtitle" name="subtitle" /><br />
+
+        <label for="description">Description:</label><br />
+        <textarea id="description" name="description" rows="4"></textarea><br />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+
+    <footer>
+      <p>&copy; 2023 HamroPathsala.com</p>
+    </footer>
+  </body>
+</html>

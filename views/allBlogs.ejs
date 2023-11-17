@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>All Blogs Page</title>
+    <style>
+      /* Internal CSS for styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 15px;
+      }
+
+      header h1 {
+        margin: 0;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 10px;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .blog-card {
+        display: flex;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+
+      .blog-image {
+        flex: 0 0 150px;
+        margin-right: 20px;
+      }
+
+      .blog-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .blog-details {
+        flex: 1;
+      }
+
+      .blog-details h3 {
+        margin-top: 0;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>All Blogs</h2>
+      <div class="blog-card">
+        <div class="blog-image">
+          <img src="https://via.placeholder.com/150" alt="Blog Image" />
+        </div>
+        <div class="blog-details">
+          <h3>Title of the Blog</h3>
+          <p>Subtitle of the Blog</p>
+          <p>
+            Description of the Blog. This can be a brief overview of the
+            content...
+          </p>
+        </div>
+      </div>
+      <!-- Repeat the blog card structure for multiple blog posts -->
+    </div>
+
+    <footer>
+      <p>&copy; 2023 HamroPathsala.com</p>
+    </footer>
+  </body>
+</html>
