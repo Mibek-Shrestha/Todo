@@ -3,8 +3,16 @@ const app = express();
 //telling node js to require and use .env
 require("./model/index.js")
 
+//requiring multerConfig
+//* or yo garda ni vayooo
+//* const multer = require("./middleware/multerConfig")
+const { multer, storage } = require("./middleware/multerConfig.js")
+
+const upload = multer({ storage: storage })
+
+
 //telling nodejs to accept the incoming data (parsing data)
-// app.use(express.json()) react vue bata
+// app.use(express.json()) react vue bata //ct = application/json handle
 app.use(express.urlencoded({ extended: true }))
 
 
@@ -28,12 +36,20 @@ app.get("/addBlog", (req, res) => {
 })
 
 //api for handling form data 
-app.post("/addBlog", async (req, res) => {
-    // console.log(req.body);
+app.post("/addBlog", upload.single('image'), async (req, res) => {
+    // console.log(req.file);
+    // return
+
+    // const title = req.body.title
+    // const subTitle = req.body.subTitle
+    //destructing
+    const { title, subTitle, description } = req.body
     await blogs.create({
-        title: req.body.title,
-        subTitle: req.body.subTitle,
-        description: req.body.description
+        //key=value or title= title;
+        title,
+        subTitle,
+        description,
+        imageUrl: req.file.filename
     })
     res.send("Blog Created Sucessfully")
 })
