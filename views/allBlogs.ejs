@@ -95,19 +95,19 @@
 
     <div class="container">
       <h2>All Blogs</h2>
+      <% blogs.forEach((blog)=>{ %>
       <div class="blog-card">
         <div class="blog-image">
-          <img src="https://via.placeholder.com/150" alt="Blog Image" />
+          <img src="<%- blog.imageUrl %>" alt="Blog Image" />
         </div>
         <div class="blog-details">
-          <h3>Title of the Blog</h3>
-          <p>Subtitle of the Blog</p>
-          <p>
-            Description of the Blog. This can be a brief overview of the
-            content...
-          </p>
+          <h3><%- blog.title %></h3>
+          <p><%- blog.subTitle %></p>
+          <p><%- blog.description %></p>
         </div>
       </div>
+      <% }) %>
+
       <!-- Repeat the blog card structure for multiple blog posts -->
     </div>
 

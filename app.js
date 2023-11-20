@@ -27,8 +27,10 @@ console.log(process.env.name);
 //say nodejs that we are using ejs, set everything 
 app.set("view engine", "ejs")
 
-app.get("/", (req, res) => {
-    res.render("allBlogs")
+app.get("/", async (req, res) => {
+    const allBlogs = await blogs.findAll()
+    // console.log(allBlogs)
+    res.render("allBlogs", { blogs: allBlogs })
 })
 
 app.get("/addBlog", (req, res) => {
@@ -53,7 +55,7 @@ app.post("/addBlog", upload.single('image'), async (req, res) => {
     })
     res.send("Blog Created Sucessfully")
 })
-
+app.use(express.static('./uploads/'))
 
 const PORT = process.env.port
 app.listen(PORT, () => {

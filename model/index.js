@@ -35,8 +35,8 @@ db.blogs = require("./blogModel.js")(sequelize, DataTypes);
 
 db.users = require("./userModel.js")(sequelize, DataTypes);
 
-
-db.sequelize.sync({ force: true }).then(() => {
+//force: false ,donot make true ,data reset
+db.sequelize.sync({ force: false }).then(() => {
     console.log("yes re-sync done");
 });
 
