@@ -14,25 +14,21 @@
       header {
         background-color: #333;
         color: #fff;
-        padding: 15px 0;
-        text-align: center;
+        padding: 15px;
       }
 
-      nav {
-        background-color: #444;
-        padding: 10px 0;
-        display: flex;
-        justify-content: flex-start;
+      header h1 {
+        margin: 0;
       }
 
       nav ul {
         list-style: none;
-        margin: 0;
         padding: 0;
-        display: flex;
+        margin-top: 10px;
       }
 
       nav ul li {
+        display: inline;
         margin-right: 10px;
       }
 
@@ -40,7 +36,6 @@
         color: #fff;
         text-decoration: none;
       }
-
       .container {
         width: 80%;
         margin: 20px auto;
@@ -99,14 +94,13 @@
     </style>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <div class="container">
       <form
