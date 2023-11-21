@@ -105,7 +105,20 @@
           <h3><%- blog.title %></h3>
           <p><%- blog.subTitle %></p>
           <p><%- blog.description %></p>
-          <button><a href="/blogs/<%-blog.id %>">See More</a></button>
+          <button
+            style="
+              background-color: red;
+              color: white;
+              border: none;
+              padding: 10px;
+            "
+          >
+            <a
+              href="/blogs/<%-blog.id %>"
+              style="text-decoration: none; color: inherit"
+              >See More</a
+            >
+          </button>
         </div>
       </div>
       <% }) %>

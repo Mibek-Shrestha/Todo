@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const fs = require('fs')
 //telling node js to require and use .env
 require("./model/index.js")
 
@@ -49,8 +50,22 @@ app.get("/blogs/:id", async (req, res) => {
     // console.log(blog);
     res.render("singleBlogs", { blog });
 })
+//delete blog
 app.get("/delete/:id", async (req, res) => {
     const id = req.params.id
+    const blog = await blogs.findAll({
+        where: {
+            id: id
+        }
+    })
+    const fileName = blog[0].imageUrl;
+    fs.unlink('./uploads/' + fileName, (err) => {
+        if (err) {
+            console.log('error ' + err)
+        } else {
+            console.log('delted')
+        }
+    })
     //aako id ko data (row) delete garni destroy method is used to delete
     await blogs.destroy({
         where: {
@@ -84,6 +99,60 @@ app.post("/addBlog", upload.single('image'), async (req, res) => {
     res.redirect("/")
 })
 app.use(express.static('./uploads/'))
+
+app.get("/edit/:id", async (req, res) => {
+    const id = req.params.id
+    const blog = await blogs.findAll({
+        where: {
+            id: id
+        }
+    })
+    res.render("editBlog", { id: blog })
+})
+//edit form bata aako data handle
+app.post("/edit/:id", upload.single('image'), async (req, res) => {
+    const { title, subTitle, description } = req.body
+    let fileName
+    if (req.file) {
+        fileName = req.file.filename
+    }
+    // console.log(req.body);
+    const id = req.params.id
+    //old data
+    const oldData = await blogs.findAll({
+        where: {
+            id: id
+        }
+    })
+    const oldFileName = oldData[0].imageUrl
+
+
+
+
+    if (fileName) {
+        //delete old if new file comes
+        fs.unlink('/uploads/' + oldFileName, (err) => {
+            if (err) {
+                console.log('error occured', err);
+            } else {
+                console.log('Old file Deleted Successfully')
+            }
+        })
+    }
+    await blogs.update({
+        title: title,
+        subTitle: subTitle,
+        description: description,
+        imageUrl: fileName ? req.file.filename : oldFileName
+    }, {
+        where: {
+            id: id
+        }
+    })
+
+    res.send("edit success")
+
+})
 
 const PORT = process.env.port
 app.listen(PORT, () => {
