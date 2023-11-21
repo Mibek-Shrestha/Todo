@@ -96,19 +96,31 @@
 
     <div class="container">
       <h2>All Blogs</h2>
-      <% blogs.forEach((blog)=>{ %>
+
       <div class="blog-card">
         <div class="blog-image">
-          <img src="<%- blog.imageUrl %>" alt="Blog Image" />
+          <img src="/<%- blog[0].imageUrl %>" alt="Blog Image" />
         </div>
         <div class="blog-details">
-          <h3><%- blog.title %></h3>
-          <p><%- blog.subTitle %></p>
-          <p><%- blog.description %></p>
-          <button><a href="/blogs/<%-blog.id %>">See More</a></button>
+          <h3><%- blog[0].title %></h3>
+          <p><%- blog[0].subTitle %></p>
+          <p><%- blog[0].description %></p>
+          <button
+            style="
+              background-color: red;
+              color: white;
+              border: none;
+              padding: 10px;
+            "
+          >
+            <a
+              href="/delete/<%- blog[0].id %>"
+              style="text-decoration: none; color: inherit"
+              >Delete</a
+            >
+          </button>
         </div>
       </div>
-      <% }) %>
 
       <!-- Repeat the blog card structure for multiple blog posts -->
     </div>

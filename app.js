@@ -32,6 +32,34 @@ app.get("/", async (req, res) => {
     // console.log(allBlogs)
     res.render("allBlogs", { blogs: allBlogs })
 })
+//get single Blog
+app.get("/blogs/:id", async (req, res) => {
+    const id = req.params.id
+    // Alternative const {id} =req.params => object destructing
+    // console.log(req.params.id);
+    //aako id ko data blogs table bata fetch/find garnu paryoo
+    // "SELECT * FROM BLOGS where id =" + req.params.id
+    //* Another alternative const blog = await blogs.findByPk(id);
+    const blog = await blogs.findAll({
+        where: {
+            id: id
+        }
+    })
+
+    // console.log(blog);
+    res.render("singleBlogs", { blog });
+})
+app.get("/delete/:id", async (req, res) => {
+    const id = req.params.id
+    //aako id ko data (row) delete garni destroy method is used to delete
+    await blogs.destroy({
+        where: {
+            id: id
+        }
+    })
+    res.redirect('/');
+
+})
 
 app.get("/addBlog", (req, res) => {
     res.render("addBlog")
@@ -53,7 +81,7 @@ app.post("/addBlog", upload.single('image'), async (req, res) => {
         description,
         imageUrl: req.file.filename
     })
-    res.send("Blog Created Sucessfully")
+    res.redirect("/")
 })
 app.use(express.static('./uploads/'))
 
