@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const fs = require('fs')
+const bcrypt = require('bcrypt')
 //telling node js to require and use .env
 require("./model/index.js")
 
@@ -18,6 +19,9 @@ app.use(express.urlencoded({ extended: true }))
 
 
 const test = require('dotenv');
+
+
+const { users } = require("./model/index.js");
 const { blogs } = require("./model/index.js");
 test.config()
 
@@ -154,6 +158,21 @@ app.post("/edit/:id", upload.single('image'), async (req, res) => {
 
 })
 
+//Register User
+app.get('/register', (req, res) => {
+    res.render('register')
+})
+
+app.post('/register', async (req, res) => {
+    const { username, email, password } = req.body
+    // console.log(req.body)
+    await users.create({
+        email,
+        password: bcrypt.hashSync(password, 8),
+        username
+    })
+    res.send("user registered ")
+})
 const PORT = process.env.port
 app.listen(PORT, () => {
     console.log("node js project has started at port " + PORT)
